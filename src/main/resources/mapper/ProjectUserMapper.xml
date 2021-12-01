@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootprojectmanagement.mapper.ProjectUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.springbootprojectmanagement.pojo.ProjectUser">
+        <id column="id" property="id" />
+        <result column="project_id" property="projectId" />
+        <result column="user_id" property="userId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, project_id, user_id
+    </sql>
+    <select id="findProjectLeaderById" resultType="java.lang.String">
+        SELECT
+            u.true_name
+        FROM xm04_t_project_user pu
+            LEFT JOIN xm04_t_project p ON pu.project_id = p.id
+            LEFT JOIN xm04_t_user u ON pu.user_id = u.id
+        WHERE
+            p.id =#{id} AND u.id = p.create_id;
+    </select>
+
+</mapper>

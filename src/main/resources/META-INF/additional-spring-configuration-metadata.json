@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.freemarker.resources.static-locations",
+      "type": "java.lang.String",
+      "description": "Description for spring.freemarker.resources.static-locations."
+  }
+] }

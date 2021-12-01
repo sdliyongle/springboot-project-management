@@ -1,0 +1,73 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /yk2021-xm04
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://122.114.161.121:3366/yjykfsj2021?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: Administrator
+    password: XWClassroom20202023
+    hikari:
+      # 连接池名
+      pool-name: DateHikariCP
+      # 最小空闲连接数
+      minimum-idle: 5
+      # 空闲连接存活最大时间，默认600000（10分钟）
+      idle-timeout: 180000
+      # 最大连接数，默认10
+      maximum-pool-size: 10
+      # 从连接池返回的连接的自动提交
+      auto-commit: true
+      # 连接最大存活时间，0表示永久存活，默认1800000（30分钟）
+      max-lifetime: 1800000
+      # 连接超时时间，默认30000（30秒）
+      connection-timeout: 30000
+      # 测试连接是否可用的查询语句
+      connection-test-query: SELECT 1
+  ## freemarker
+  freemarker:
+    suffix: .ftl
+    content-type: text/html
+    charset: UTF-8
+    template-loader-path: classpath:/views/
+    check-template-location: true # 是否检查模板位置是否存在。
+    request-context-attribute: ctx
+    settings:
+      number_format: 0.##
+      template_update_delay: 0
+    cache: false
+
+  mail:
+    host: smtp.qq.com
+    username: 949789978@qq.com
+    password: ezewubojrulebaja
+    properties:
+      mail:
+        stmp:
+          ssl:
+            enable: true
+    default-encoding: UTF-8
+
+# Mybatis-plus配置
+mybatis-plus:
+  #配置Mapper映射文件
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  # 配置MyBatis数据返回类型别名（默认别名是类名）
+  type-aliases-package: com.example.springbootprojectmanagement.pojo
+  configuration:
+    # 自动驼峰命名
+    map-underscore-to-camel-case: true
+
+
+
+## SQL 打印(方法接口所在的包，不是Mapper.xml所在的包)
+logging:
+  level:
+    com.example.springbootprojectmanagement.mapper: debug
+
+
+  ## 控制台日志输出格式
+  pattern:
+    console: '%d{2100-01-01 13:14:00.666} [%thread] %-5level %logger{50} - %msg%n'
